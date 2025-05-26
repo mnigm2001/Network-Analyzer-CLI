@@ -31,13 +31,13 @@ It is intentionally modular and extensible, and serves as both a network diagnos
 ---
 
 ## Project Structure
-network-analyzer/
-├── analyzer/ # Core logic (capture, parsing, reporting)
-├── cli/ # Command-line interface
-├── data/ # PCAP captures and logs
-├── tests/ # Unit tests
-├── setup.sh # Full setup script for Linux/WSL
-├── requirements.txt
+network-analyzer/  
+├── analyzer/ # Core logic (capture, parsing, reporting)  
+├── cli/ # Command-line interface  
+├── data/ # PCAP captures and logs  
+├── tests/ # Unit tests  
+├── setup.sh # Full setup script for Linux/WSL  
+├── requirements.txt  
 └── README.md
 
 
