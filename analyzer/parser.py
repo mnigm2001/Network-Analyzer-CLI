@@ -1,34 +1,22 @@
+# analyzer/parser.py
+
 import pyshark
+from rich.console import Console
+
+console = Console()
 
 def parse_pcap(file_path):
     """
-    Simple printout of TCP/IP packet info.
+    Simple printout of TCP/IP packet info, in real time as we iterate.
     """
+    console.print(f"\n[cyan]Parsing {file_path}…[/cyan]\n")
     cap = pyshark.FileCapture(file_path)
     for pkt in cap:
         try:
-            ip = pkt.ip
-            print(f"{ip.src} → {ip.dst} | Protocol: {pkt.transport_layer}")
+            src = pkt.ip.src
+            dst = pkt.ip.dst
+            proto = pkt.transport_layer
+            console.print(f"[white]{src} → {dst}[/white]  |  [blue]{proto}[/blue]")
         except AttributeError:
             continue
     cap.close()
-
-
-def extract_records(file_path):
-    """
-    Parse pcap and return list of dicts with packet fields.
-    """
-    cap = pyshark.FileCapture(file_path)
-    records = []
-    for pkt in cap:
-        try:
-            records.append({
-                "src": pkt.ip.src,
-                "dst": pkt.ip.dst,
-                "proto": pkt.transport_layer,
-                "length": int(pkt.length)
-            })
-        except AttributeError:
-            continue
-    cap.close()
-    return records
