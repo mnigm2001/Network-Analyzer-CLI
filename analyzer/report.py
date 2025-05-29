@@ -1,5 +1,4 @@
 import csv
-from analyzer.parser import extract_records
 
 
 def export_csv(records, csv_path="data/report.csv"):  # noqa: D103
